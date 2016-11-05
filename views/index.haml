@@ -1,0 +1,56 @@
+:ruby
+  token = "abcdef"
+  # token = "123"
+
+  require 'json'
+
+  # require "net/https"
+  # require "uri"
+  # def op_returns
+  #   uri = URI.parse("https://runkit.io/makevoid/from-mobile-test/branches/master")
+  #   http = Net::HTTP.new(uri.host, uri.port)
+  #   http.use_ssl = true
+  #   http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+  #
+  #   request = Net::HTTP::Get.new(uri.request_uri)
+  #
+  #   response = http.request(request)
+  #   JSON.parse response.body
+  # end
+
+  def op_returns
+    response = `cd runkit/ && ./run`.strip.gsub(/'/, '"')
+    JSON.parse "{ \"op_returns\": #{response} }"
+  end
+
+%h1 OpenBazaar recovery
+
+%br
+%br
+
+%h4 Your recovery address is 1M97nyNGSDA9ijSGwCTfoiPMKUUSVV8Vmc
+
+%h3 Please write an OP_RETURN transaction with "token: #{token}" written in it to recover your private key
+
+- DB[:key_shown] = false #  debug - remove in prod
+- op_retz = op_returns["op_returns"]
+
+%h2
+  - if op_retz.include?("token: #{token}") # && !DB[:key_shown]
+    %span SHOWING PRIVATE KEY: #{`ruby ob_sequel.rb`}
+  - else
+    - if DB[:key_shown]
+      TOKEN ALREADY SHOWN
+    - else
+      waiting for the bitcoin tx, refresh the page after your transaction.
+
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%p debug
+
+%p= op_retz.inspect
