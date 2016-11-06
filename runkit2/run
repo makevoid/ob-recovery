@@ -1,0 +1,4 @@
+# babel check_op_return.js > dist/check_op_return.js && \
+
+
+node dist/check_op_return.js
