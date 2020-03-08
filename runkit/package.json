@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "axios": "^0.15.2",
+    "axios": "^0.19.2",
     "babel-plugin-transform-async-to-generator": "^6.16.0",
     "babel-preset-es2017": "^6.16.0"
   }
