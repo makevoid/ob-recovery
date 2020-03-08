@@ -3,8 +3,8 @@ GEM
   specs:
     haml (4.0.7)
       tilt
-    rack (1.6.4)
-    rack-protection (1.5.3)
+    rack (1.6.13)
+    rack-protection (1.5.5)
       rack
     sequel (4.39.0)
     sinatra (1.4.7)
@@ -24,4 +24,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   1.13.6
+   2.1.4
